@@ -2,7 +2,6 @@ package com.shieldingshell.club;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,8 +33,38 @@ public class Main {
 					System.out.println(club);
 				}
 				break;
-			case "delemember":
-				
+			case "delmember":
+				System.out.println("In which club is the member you want to delete ?");
+				String[] list2 = fct.listDirectory(PREFIXE);
+				for (String club : list2) {
+					System.out.println(club);
+				}
+				String clubNameDel = sc.nextLine();
+				File fileDel = new File(PREFIXE + "\\" + clubNameDel);
+				Club clubDel = fct.readClub(fileDel);
+				List<Member> membersDel = clubDel.getMembers();
+				System.out.println("Which member to you want to delete?");
+				for (int i = 0; i < membersDel.size(); i++) {
+					System.out.println("(" + i + ")" + "Last Name: " + membersDel.get(i).getLastName() + " First Name: " + membersDel.get(i).getFirstName());
+				}
+				int nbrToDelete = sc.nextInt();
+				System.out.println("Are you sure you want to delete " + membersDel.get(nbrToDelete).getFirstName() + " " + membersDel.get(nbrToDelete).getLastName() + "? (write \"yes\" to confirm)");
+				String RUSure = sc.nextLine();
+				RUSure = sc.nextLine();
+				if (RUSure.equals("yes")) {
+					membersDel.remove(nbrToDelete);
+					Club clubDelRemoved = new Club(clubNameDel, membersDel);
+					try {
+						fileDel.delete();
+						fct.writeClub(fileDel, clubDelRemoved);
+						System.out.println("deleted");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else {
+					System.out.println("Nothing was deleted");
+				}
 				break;
 			case "createmember":
 				boolean exitCreateMember = false;
