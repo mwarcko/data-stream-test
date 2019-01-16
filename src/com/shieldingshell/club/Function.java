@@ -50,14 +50,14 @@ public class Function {
 		}
 	}
 	
-	public void readClub(File file){
+	public Club readClub(File file){
 		int counter = 0;
+		Club club = new Club();
 		try(FileInputStream fis = new FileInputStream(file);
 				ObjectInputStream ois = new ObjectInputStream(fis)){
-			Club club;
 			while((club = (Club) ois.readObject()) !=null) {
-				System.out.println(club);
 				counter++;
+				System.out.println(club);
 			}
 		}catch (IOException | ClassNotFoundException e) {
 			if(e instanceof EOFException) {
@@ -66,5 +66,15 @@ public class Function {
 				e.printStackTrace();
 			}
 		}
+		return club;
 	}
+	
+	public void createClub(Club club) {
+		
+	}
+	
+	public void addClubToMember(Club club, Member member) {
+		
+	}
+	
 }

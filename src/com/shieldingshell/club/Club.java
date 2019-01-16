@@ -1,28 +1,25 @@
 package com.shieldingshell.club;
 
-import java.io.File;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Club {
+public class Club implements Serializable{
 
-	String name;
-	List<Member> members = new LinkedList<>();
-	File dataFile;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String name;
+	private List<Member> members = new LinkedList<>();
 
-	public Club(String name, List<Member> members, File dataFile) {
+	public Club() {
+	}
+	
+	public Club(String name, List<Member> members) {
 		super();
 		this.name = name;
 		this.members = members;
-		this.dataFile = dataFile;
-	}
-
-	public final File getDataFile() {
-		return dataFile;
-	}
-
-	public final void setDataFile(File dataFile) {
-		this.dataFile = dataFile;
 	}
 
 	public final String getName() {
@@ -43,7 +40,7 @@ public class Club {
 
 	@Override
 	public String toString() {
-		return "Club [name=" + name + ", members=" + members + ", dataFile=" + dataFile + "]";
+		return "Club [name=" + name + ", members=" + members + "]";
 	}
 
 }
