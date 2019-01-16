@@ -55,11 +55,9 @@ public class Main {
 					membersDel.remove(nbrToDelete);
 					Club clubDelRemoved = new Club(clubNameDel, membersDel);
 					try {
-						fileDel.delete();
 						fct.writeClub(fileDel, clubDelRemoved);
 						System.out.println("deleted");
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}else {
@@ -100,7 +98,6 @@ public class Main {
 					try {
 						fct.writeClub(file, club);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					System.out.println("Do you want to continue adding members ? (Y/n)");
@@ -109,7 +106,6 @@ public class Main {
 						exitCreateMember=true;
 					}
 				} while (!exitCreateMember);
-
 				break;
 			case "lstclub":
 				System.out.println("What club to consult ?");
@@ -125,8 +121,6 @@ public class Main {
 				System.out.println("unknow option");
 			}
 		}
-
 		sc.close();
 	}
-
 }
